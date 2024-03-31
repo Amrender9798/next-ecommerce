@@ -9,12 +9,12 @@ import ProductCard2 from "../components/card/ProductCard2";
 import Carousel from "../components/view/Carousel";
 
 export default function Catalog({ data, items }) {
-  console.log(items);
+  
   const searchParams = useSearchParams();
   const navbar = searchParams.get("navbar") || "Navbar1";
   const productCard = searchParams.get("productCard") || "ProductCard1";
   const displayMode = searchParams.get("displayMode") || "view_all";
-  console.log(navbar, productCard, displayMode);
+ 
   const [products, setProducts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
   useEffect(() => {

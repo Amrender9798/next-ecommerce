@@ -5,7 +5,6 @@ export async function GET(request) {
   const searchParams = request.nextUrl.searchParams;
   const limit = searchParams.get("limit");
   const offset = searchParams.get("offset");
-  console.log(limit, offset);
 
   let result = products;
   if (limit && offset && !isNaN(limit) && !isNaN(offset)) {

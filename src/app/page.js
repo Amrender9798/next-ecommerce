@@ -1,15 +1,17 @@
-// Import your Client Component
-import HomePage from "./home-page";
+const Page = () => {
+  return (
+    <div className="container mx-auto p-4">
+      <h1 className="text-3xl font-bold mb-4">Two routes available</h1>
+      <div className="space-y-2 text-2xl">
+        <a href="/catalog" className="block text-blue-500 hover:underline">
+          /catalog
+        </a>
+        <a href="/settings" className="block text-blue-500 hover:underline">
+          /settings
+        </a>
+      </div>
+    </div>
+  );
+};
 
-async function getProducts() {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const products = await res.json();
-  return products;
-}
-
-export default async function Products() {
-  // Fetch data directly in a Server Component
-  const products = await getProducts();
-  // Forward fetched data to your Client Component
-  return <HomePage products={products} />;
-}
+export default Page;
