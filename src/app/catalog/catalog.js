@@ -1,21 +1,16 @@
 "use client";
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ProductCard1 from "../components/card/ProductCard1";
-import { useSearchParams } from "next/navigation";
 import Navbar1 from "../components/navbar/Navbar1";
 import Navbar2 from "../components/navbar/Navbar2";
 import ProductCard2 from "../components/card/ProductCard2";
 import Carousel from "../components/view/Carousel";
 
-export default function Catalog({ data, items }) {
-  const searchParams = useSearchParams();
-  const navbar = searchParams.get("navbar") || "Navbar1";
-  const productCard = searchParams.get("productCard") || "ProductCard1";
-  const displayMode = searchParams.get("displayMode") || "view_all";
-
+const Catalog = ({ data, items }) => {
   const [products, setProducts] = useState(data);
   const [hasMore, setHasMore] = useState(true);
+
   useEffect(() => {
     setHasMore(products.length < items);
   }, [products]);
@@ -28,29 +23,24 @@ export default function Catalog({ data, items }) {
 
   return (
     <>
-      <Suspense fallback={<div>Loading...</div>}>
-        {navbar == "Navbar1" ? <Navbar1 /> : <Navbar2 />}
-      </Suspense>
-      {displayMode === "view_all" ? (
-        <InfiniteScroll
-          dataLength={products.length}
-          next={getMoreProducts}
-          hasMore={hasMore}
-          loader={<h4 className="text-center text-3xl">Loading....</h4>}
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
-            {products.map((product) =>
-              productCard === "ProductCard1" ? (
-                <ProductCard1 key={product.id} product={product} />
-              ) : (
-                <ProductCard2 key={product.id} product={product} />
-              )
-            )}
-          </div>
-        </InfiniteScroll>
-      ) : (
-        <Carousel data={products} productCard={productCard} items={items} />
+      {typeof window !== "undefined" && (
+        // Render only on the client side
+        <Navbar1 />
       )}
+      <InfiniteScroll
+        dataLength={products.length}
+        next={getMoreProducts}
+        hasMore={hasMore}
+        loader={<h4 className="text-center text-3xl">Loading....</h4>}
+      >
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-8">
+          {products.map((product) => (
+            <ProductCard1 key={product.id} product={product} />
+          ))}
+        </div>
+      </InfiniteScroll>
     </>
   );
-}
+};
+
+export default Catalog;
