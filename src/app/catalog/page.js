@@ -2,7 +2,6 @@ import Catalog from "./catalog";
 
 const API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
 async function getProducts() {
-  console.log(API_URL); 
   const res = await fetch( `${API_URL}/api/products/?limit=10&offset=0`);
   const res2 = await fetch(`${API_URL}/api/total-items`);
   const { products } = await res.json();
