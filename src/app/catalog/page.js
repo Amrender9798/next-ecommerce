@@ -17,7 +17,6 @@ export default async function Products() {
   // Fetch data directly in a Server Component
   const { products,items } = await getProducts();
   // Forward fetched data to your Client Component
-  return <Suspense>
-    <Catalog data={products} items={items}/>
-  </Suspense>;
+  return <Catalog data={products} items={items}/>
+  
 }
