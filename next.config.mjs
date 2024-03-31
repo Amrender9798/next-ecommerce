@@ -1,5 +1,4 @@
-// next.config.js
-export const experimental = {
-    missingSuspenseWithCSRBailout: false,
-};
-  
+/** @type {import('next').NextConfig} */
+const nextConfig = {};
+
+export default nextConfig;
