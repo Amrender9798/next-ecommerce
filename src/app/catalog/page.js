@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Catalog from "./catalog";
 
 const API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
@@ -16,5 +17,7 @@ export default async function Products() {
   // Fetch data directly in a Server Component
   const { products,items } = await getProducts();
   // Forward fetched data to your Client Component
-  return <Catalog data={products} items={items}/>;
+  return <Suspense>
+    <Catalog data={products} items={items}/>
+  </Suspense>;
 }
