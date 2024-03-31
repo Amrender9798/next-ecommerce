@@ -28,7 +28,7 @@ export default function Settings() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-[90vh]">
       <div className="w-full max-w-lg p-8 bg-white rounded-lg shadow-md">
         <h1 className="text-2xl font-semibold mb-4">Settings</h1>
         <form onSubmit={handleSubmit}>
