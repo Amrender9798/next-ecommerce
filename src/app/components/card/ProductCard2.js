@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const ProductCard2 = ({ product }) => {
   const renderStars = (rating) => {
@@ -23,11 +24,15 @@ const ProductCard2 = ({ product }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden">
-      <img
-        className="w-full h-48 object-center"
-        src={product.image}
-        alt={product.category}
-      />
+      {/* Replace <img> with <Image> */}
+      <div className="w-full h-48 object-center relative">
+        <Image
+          src={product.image}
+          alt={product.category}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
       <div className="p-6">
         <h2 className="text-lg font-semibold text-gray-800">{product.title}</h2>
         <div className="flex items-center mt-2">

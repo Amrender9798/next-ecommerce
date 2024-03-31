@@ -1,5 +1,5 @@
-import Link from "next/link";
 import React from "react";
+import Image from "next/image"; // Import next/image
 
 const ProductCard1 = ({ product }) => {
   const renderStars = (rating) => {
@@ -24,11 +24,15 @@ const ProductCard1 = ({ product }) => {
 
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden relative">
-      <img
-        className="w-1/2 mx-auto h-48 object-center"
-        src={product.image}
-        alt={product.category}
-      />
+      {/* Use next/image component */}
+      <div className="w-1/2 mx-auto h-48 object-center relative">
+        <Image
+          src={product.image}
+          alt={product.category}
+          layout="fill"
+          objectFit="cover"
+        />
+      </div>
       <svg
         className="absolute top-2 right-2 text-black w-6 h-6"
         viewBox="0 0 24 24"
